@@ -31,13 +31,19 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-spring</artifactId>
-			<version>${camel.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-3scale</artifactId>
 			<version>${camel.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
 		</dependency>
 
 	</dependencies>
@@ -56,20 +62,13 @@
 				</configuration>
 			</plugin>
 
-			<!-- Allows the routes to be run via 'mvn camel:run' -->
-			<plugin>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-maven-plugin</artifactId>
-				<version>${camel.version}</version>
-			</plugin>
-
 			<!-- Allows HelloCamelClient to be run via 'mvn exec:java' -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>${exec.maven.plugin.version}</version>
 				<configuration>
-					<mainClass>com.fusesource.byexample.hellocamel.impl.HelloCamelClient</mainClass>
+					<mainClass>org.camel.examples.impl.SimpleRouteClient</mainClass>
 					<killAfter>-1</killAfter>
 					<cleanupDaemonThreads>false</cleanupDaemonThreads>
 				</configuration>
