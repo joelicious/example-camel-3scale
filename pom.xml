@@ -12,6 +12,7 @@
 	<properties>
 		<jboss.fuse.bom.version>6.3.0.redhat-187</jboss.fuse.bom.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<hazelcast-version>3.9</hazelcast-version>
 
 		<camel.version>2.20.0</camel.version>
 		<camel.3scale.version>2.21.0-SNAPSHOT</camel.3scale.version>
@@ -34,6 +35,11 @@
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-3scale</artifactId>
 			<version>${camel.3scale.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast</artifactId>
+			<version>${hazelcast-version}</version>
 		</dependency>
 
 		<dependency>
@@ -68,11 +74,30 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>${exec.maven.plugin.version}</version>
-				<configuration>
-					<mainClass>org.camel.examples.impl.SimpleRouteClient</mainClass>
-					<killAfter>-1</killAfter>
-					<cleanupDaemonThreads>false</cleanupDaemonThreads>
-				</configuration>
+				<executions>
+					<execution>
+						<id>authorization-cache</id>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>org.camel.examples.impl.AuthorizationCacheRouteClient</mainClass>
+							<killAfter>-1</killAfter>
+							<cleanupDaemonThreads>false</cleanupDaemonThreads>
+						</configuration>
+					</execution>
+					<execution>
+						<id>authorization-nocache</id>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>org.camel.examples.impl.AuthorizationNoCacheRouteClient</mainClass>
+							<killAfter>-1</killAfter>
+							<cleanupDaemonThreads>false</cleanupDaemonThreads>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
